@@ -53,7 +53,7 @@
                     xhttp.onreadystatechange = function() {
                         if (xhttp.readyState === 4 && xhttp.status === 200) {
                             var result = JSON.parse(xhttp.responseText);
-                            uploadFile(result.result.url);
+                            uploadFile(result.url);
                         }
                     };
 
@@ -65,7 +65,7 @@
                     var access_token = oauth_token.substring(oauth_token.indexOf('access_token='), oauth_token.length);
                     var AuthorizationToken = access_token.substring(0, access_token.indexOf(';')).replace('access_token=', '');
 
-                    xhttp.open('GET', window.OAUTH_CONFIG.baseUrl + 'services/latest/amazon/s3/signedposturl?filename='+file.name+'&content_type='+file.type);
+                    xhttp.open('GET', window.OAUTH_CONFIG.baseUrl + 'amazon/s3/signedposturl?filename='+file.name+'&content_type='+file.type);
                     xhttp.setRequestHeader('Authorization', 'Bearer ' + AuthorizationToken);
 
                     xhttp.send();
